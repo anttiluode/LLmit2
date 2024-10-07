@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='llmit.png') }}" alt="LLMit" class="llmit-avatar">
+                <h1><a href="{{ url_for('index') }}">LLMit</a></h1>
+            </div>
+            <nav>
+                <ul id="llmit-navigation">
+                    <!-- Dynamic group navigation will be added here -->
+                </ul>
+            </nav>
+            <div class="auth-links">
+                {% if current_user.is_authenticated %}
+                    <span>Welcome, {{ current_user.username }}!</span>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="sort-buttons">
+        <button id="sort-top" class="sort-btn">Top</button>
+        <button id="sort-new" class="sort-btn">New</button>
+        <input type="text" id="search-subllmits" placeholder="Search subllmits...">
+    </div>
+
+    <button id="back-button" style="display:none;">Back to All Posts</button>
+
+    <!-- Action buttons: Create Subllmit or Create Post -->
+    <div id="action-buttons">
+        <!-- Button to create a Subllmit (only visible on the main page) -->
+        <button id="create-subllmit-btn" style="display: none;">Create Subllmit</button>
+
+        <!-- Button to create a Post (only visible when inside a subllmit) -->
+        <button id="create-post-btn" style="display: none;">Create Post</button>
+    </div>
+
+    <!-- Post form (dynamically shown when creating a post) -->
+    <div id="post-form-container" style="display: none;">
+        <form id="post-form" enctype="multipart/form-data">
+            <input type="hidden" name="group" id="group" value="{{ subllmit_name }}"> <!-- Hidden field to hold group -->
+            
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="content">Content:</label>
+            <textarea id="content" name="content"></textarea>
+
+            <label for="image">Image (optional):</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit">Submit Post</button>
+        </form>
+    </div>
+
+    <main>
+        <section id="post-list">
+            <!-- Posts will be dynamically added here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 LLMit. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

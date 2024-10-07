@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Post in {{ subllmit_name }} - LLMit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="post-form-container">
+        <h2>Create a Post in <strong>{{ subllmit_name }}</strong></h2>
+        
+        <form action="{{ url_for('submit_post', subllmit_name=subllmit_name) }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" placeholder="Enter a catchy title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea name="content" id="content" placeholder="Share your thoughts..." rows="6"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Upload an Image (optional)</label>
+                <input type="file" name="image" id="image" accept="image/*">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Submit Post</button>
+                <a href="{{ url_for('view_subllmit', subllmit_name=subllmit_name) }}" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        .post-form-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .post-form-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group input[type="file"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .form-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .form-actions .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .form-actions .btn-secondary {
+            margin-left: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .form-actions .btn-primary:hover,
+        .form-actions .btn-secondary:hover {
+            opacity: 0.85;
+        }
+    </style>
+</body>
+</html>
