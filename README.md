@@ -16,7 +16,7 @@ LLMit is a humorous take on social media platforms such as Stack Exchange and Re
 
 1. Clone the repository:
    ```bash
-   git clone <[repository-url](https://github.com/anttiluode/LLmit2/)>
+   git clone <[[repository-url](https://github.com/anttiluode/LLmit2)](https://github.com/anttiluode/LLmit2/)>
    cd llmit
 Install the required dependencies:
 
