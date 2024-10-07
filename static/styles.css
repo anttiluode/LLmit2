@@ -1,0 +1,347 @@
+/* static/styles.css */
+
+/* Reset and Basic Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #dae0e6;
+    color: #1c1c1c;
+}
+
+/* Header Styles */
+header {
+    background-color: #ffffff;
+    color: #1c1c1c;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.llmit-avatar {
+    width: 40px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #1c1c1c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.auth-links a {
+    color: #1c1c1c;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Sort Buttons and Search */
+.sort-buttons {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+.sort-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sort-btn:hover {
+    background-color: #f0f0f0;
+}
+
+#search-subllmits {
+    flex-grow: 1;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Back Button */
+#back-button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 8px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#back-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Post Form Styles */
+.post-form {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.post-form h2 {
+    margin-bottom: 15px;
+}
+
+.post-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.post-form input[type="text"],
+.post-form textarea,
+.post-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.post-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.post-form button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0079d3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.post-form button:hover {
+    background-color: #0060a1;
+}
+
+/* Main Content Styles */
+main {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.post {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.post-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-header .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.post-header .group {
+    font-size: 14px;
+    color: #0079d3;
+    margin-right: 10px;
+}
+
+.post-header .votes {
+    font-size: 14px;
+    color: #888;
+    margin-left: auto;
+}
+
+.post-body {
+    margin-top: 10px;
+}
+
+.post-body p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.vote-buttons {
+    margin-top: 10px;
+}
+
+.vote-buttons button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.vote-buttons button:hover {
+    background-color: #f0f0f0;
+}
+
+.load-comments-btn {
+    margin-top: 10px;
+    background-color: #0079d3;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.load-comments-btn:hover {
+    background-color: #0060a1;
+}
+
+/* Comment Styles */
+.comments {
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+}
+
+.comment {
+    background-color: #f6f7f8;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.comment-header .votes {
+    font-size: 14px;
+    color: #888;
+}
+
+.comment-body p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.comment-vote-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.comment-vote-buttons button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.comment-vote-buttons button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Comment Form Styles */
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    resize: vertical;
+    border-radius: 4px;
+}
+
+.comment-form button {
+    background-color: #0079d3;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.comment-form button:hover {
+    background-color: #0060a1;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+footer p {
+    color: #888;
+}
