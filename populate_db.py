@@ -8,6 +8,9 @@ import re
 from datetime import datetime
 from flask import url_for
 from app import db, Post, Comment, Subllmit, app  # Ensure 'app' is correctly imported
+from openai import OpenAI  # Ensure this is the correct import based on your OpenAI client
+import torch
+from diffusers import StableDiffusionPipeline
 
 # Set environment variables before importing any dependent libraries
 cache_directory = "G:\\huggingface"  # Ensure this path exists and has sufficient space
@@ -17,9 +20,6 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = "max_split_size_mb:128"  # Helps with fr
 # Create cache directory if it doesn't exist
 os.makedirs(cache_directory, exist_ok=True)
 
-import torch
-from diffusers import StableDiffusionPipeline
-
 # Clear any existing GPU cache
 torch.cuda.empty_cache()
 
@@ -27,8 +27,23 @@ torch.cuda.empty_cache()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-# Initialize the Stable Diffusion Pipeline
+# Set up the local LLM client
+client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")  # Update as needed
+
+# Initialize the Stable Diffusion Pipeline with specified cache_dir and optimizations
 try:
+    pipe = StableDiffusionPipeline.from_pretrained(
+        "stabilityai/stable-diffusion-2-1",  # Using Stable Diffusion 2-1
+        cache_dir=cache_directory,  # Specify the cache directory
+        torch_dtype=torch.float16,  # Use float16 for better GPU compatibility
+        revision="fp16"  # Ensure you're using the float16 revision for memory efficiency
+    )
+    pipe.to(device)
+    print("Model loaded successfully.")
+except torch.cuda.OutOfMemoryError as e:
+    print("CUDA Out of Memory Error while loading the model:", e)
+    print("Falling back to CPU...")
+    device = torch.device('cpu')
     pipe = StableDiffusionPipeline.from_pretrained(
         "stabilityai/stable-diffusion-2-1",
         cache_dir=cache_directory,
@@ -36,7 +51,6 @@ try:
         revision="fp16"
     )
     pipe.to(device)
-    print("Model loaded successfully.")
 except Exception as e:
     print("An unexpected error occurred while loading the model:", e)
     exit(1)
@@ -68,12 +82,12 @@ def generate_image(image_prompt, post):
 
         # Save the image with a unique filename
         image_filename = f"{post.group}_{post.id}_{random.randint(0, 100000)}.png"
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
+        image_path = os.path.join('static', 'uploads', image_filename)
         os.makedirs(os.path.dirname(image_path), exist_ok=True)
         image.save(image_path)
 
-        # Update the post with the image URL
-        image_url = url_for('static', filename='uploads/' + image_filename, _external=True)  # Make URL absolute
+        # Update the post with the absolute image URL
+        image_url = f"http://localhost:5000/static/uploads/{image_filename}"  # Use absolute URL
         post.image_url = image_url
         db.session.commit()
 
@@ -148,8 +162,6 @@ def generate_post_for_group(group_name):
 
     except Exception as e:
         print(f"Error generating post for {group_name}: {e}")
-
-
 def generate_comment_for_post(post_id, post_title, group_name, is_human_post=False):
     try:
         prompt = (
@@ -159,10 +171,8 @@ def generate_comment_for_post(post_id, post_title, group_name, is_human_post=Fal
         )
 
         completion = client.chat.completions.create(
-            model="your-model-identifier",  # Replace with your actual model identifier
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
+            model="unsloth/Llama-3.2-3B-Instruct-GGUF",  # Replace with your actual model identifier
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=150,
         )
@@ -206,10 +216,8 @@ def create_new_subllmit():
         )
 
         completion = client.chat.completions.create(
-            model="your-model-identifier",  # Replace with your actual model identifier
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
+            model="unsloth/Llama-3.2-3B-Instruct-GGUF",  # Replace with your actual model identifier
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.9,
             max_tokens=10,
         )
