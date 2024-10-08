@@ -84,7 +84,7 @@ def generate_image(image_prompt, post):
     except Exception as e:
         print(f"Error generating image for post {post.id}: {e}")
 
-def generate_post_for_group(group_name):
+def generate_post_for_group(group_name, post_count):
     try:
         prompt = (
             f"As a user on the '{group_name}' subllmit on LLMit, write a typical post that fits the theme of this subllmit. "
@@ -135,11 +135,12 @@ def generate_post_for_group(group_name):
 
         print(f"Generated AI post for {group_name}: {title}")
 
-        # Logic to decide whether to generate an image
-        if image_prompt:  # If an image prompt exists, use it
-            generate_image(image_prompt, post)
-        elif random.randint(1, 3) == 1:  # Random chance to generate an image
-            generate_image(title, post)  # Use the title as the image prompt
+        # Logic to decide whether to generate an image based on a 1 in 10 ratio
+        if post_count % 10 == 0:  # Generate an image post every 10th post
+            if image_prompt:  # If an image prompt exists, use it
+                generate_image(image_prompt, post)
+            else:
+                generate_image(title, post)  # Use the title as the image prompt
         else:
             print(f"No image generated for post {post.id}")
 
@@ -150,6 +151,7 @@ def generate_post_for_group(group_name):
 
     except Exception as e:
         print(f"Error generating post for {group_name}: {e}")
+
 
 def generate_comment_for_post(post_id, post_title, group_name, is_human_post=False):
     try:
@@ -248,7 +250,7 @@ if __name__ == "__main__":
 
             while posts_generated < total_posts_to_generate:
                 for group_name in groups:
-                    generate_post_for_group(group_name)
+                    generate_post_for_group(group_name, posts_generated)
                     posts_generated += 1
                     time.sleep(1)  # Add delay to avoid overwhelming the LLM server
 
