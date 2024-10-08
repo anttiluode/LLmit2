@@ -43,6 +43,11 @@ python initialize_db.py
 
 ```bash
 python populate_db.py
+```
+### Run the app: 
+
+```bash
+python app.py
 ``` 
 
 ### Access the app in your browser at 
