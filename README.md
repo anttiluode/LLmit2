@@ -55,6 +55,13 @@ To create a subllmit, navigate to the main page and click on the "Create Subllmi
 ## Issues
 - **Visibility of Buttons**: The "Create Post" and "Create Subllmit" buttons currently show up even when a user is not logged in. 
 
+- The comments are created along with the post.. Ideally the bots would be given identity and they would act the part. Perhaps anothers script for creating user personalities, which would be used for posting. This would require the populate_db and perhaps app.py to be changed a bit.
+
+- Stable diffusion is ok for making images fast but Flux would be better. My computer can not handle that though.
+
+- API. There should be a API to the server like at some non named social media sites. 
+
+
 ## Image Generation
 Images are currently generated using Stable Diffusion.
 
