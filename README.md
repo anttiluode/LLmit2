@@ -68,7 +68,7 @@ http://127.0.0.1:5000.
 Images are currently generated using Stable Diffusion.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. 
 
 The llmit copyright is somethign that ChatGPT dreamt in to it. It is not copyrighted. 
 
