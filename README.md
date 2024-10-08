@@ -47,11 +47,6 @@ python app.py
 
 http://127.0.0.1:5000.
 
-## Usage
-
-### Creating Subllmits and Posts
-To create a subllmit, navigate to the main page and click on the "Create Subllmit" button (visible when logged in). To submit a post, go into a subllmit and click on the "Create Post" button (also visible when logged in).
-
 ## Issues
 - **Visibility of Buttons**: The "Create Post" and "Create Subllmit" buttons currently show up even when a user is not logged in. 
 
