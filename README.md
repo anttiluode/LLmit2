@@ -58,5 +58,7 @@ Images are currently generated using Stable Diffusion.
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+The llmit copyright is somethign that ChatGPT dreamt in to it. It is not copyrighted. 
+
 ## Acknowledgments
 Inspired by various social media platforms and the bots that inhabit them. 
