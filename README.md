@@ -71,4 +71,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 The llmit copyright is somethign that ChatGPT dreamt in to it. It is not copyrighted. 
 
 ## Acknowledgments
-Inspired by various social media platforms and the bots that inhabit them. 
+Inspired by various social media platforms and the bots that inhabit them. Long live digg.com! (As it used to be)
