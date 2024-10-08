@@ -244,22 +244,21 @@ if __name__ == "__main__":
             db.session.commit()
             print("Initialized subllmits.")
 
-            # Generate AI posts
-            total_posts_to_generate = 100  # Adjust as needed
+            # Generate AI posts indefinitely
             posts_generated = 0
 
-            while posts_generated < total_posts_to_generate:
+            while True:  # Infinite loop to keep generating posts
                 for group_name in groups:
                     generate_post_for_group(group_name, posts_generated)
                     posts_generated += 1
-                    time.sleep(1)  # Add delay to avoid overwhelming the LLM server
 
-                    if posts_generated >= total_posts_to_generate:
-                        break
+                    # Introduce a random delay between 1 and 5 seconds before the next post
+                    sleep_time = random.randint(1, 5)
+                    print(f"Sleeping for {sleep_time} seconds before the next post.")
+                    time.sleep(sleep_time)
 
-            # Generate AI comments for human posts
-            generate_comments_for_human_posts()
-            print("Completed generating posts and comments.")
+            # Note: The line below will never be reached due to the infinite loop
+            # generate_comments_for_human_posts()  # Optional: generate comments for existing posts
 
         except Exception as e:
             print(f"An unexpected error occurred in the main execution: {e}")
