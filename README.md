@@ -39,11 +39,11 @@ You need to run the following command to set up the database. (Ensure that you h
 python initialize_db.py
 ```
 
-### Run the application:
+### Populate the DB: 
 
 ```bash
-python app.py
-```
+python populate_db.py
+``` 
 
 ### Access the app in your browser at 
 
