@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 ### Initialize the database:
 
-You need to run the following command to set up the database. (Ensure that you have LM Studio with a suitable AI model running in server mode.)
+You need to run the following command to set up the database. (Ensure that you have LM Studio with a suitable AI model running in server mode.) I am using Llama-3.2-3B-Instruct-Q5_K_M.gguf which seems to be able to handle the task of writing json for image promtps etc. 
 
 ```bash
 python initialize_db.py
